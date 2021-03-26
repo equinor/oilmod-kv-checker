@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Ronnie <rhenri@equinor.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "ncc build index.js --license licenses.txt"
+  },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
@@ -14,5 +17,8 @@
     "colors": "^1.4.0",
     "commander": "^7.0.0",
     "nodemailer": "^6.4.17"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.27.0"
   }
 }
