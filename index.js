@@ -232,7 +232,7 @@ function sendMail(messages) {
   const message = {
     from: "Azure Keyvault Notifier <noreply@equinor.com>",
     to: options.to,
-    subject: "[Alert] Keyvault secrets are about to expire",
+    subject: `[Alert] Keyvault secrets are about to expire for ${vaultName}`,
     text: messages.map(m => m.message).join('\n'),
     html: `<ul>
 ${messages.map(m => `<li style="${m.severity === 0 ? 'color: red;' : m.severity === 1 ? 'color: #99cc33;' : ''}">${m.message}</li>`).join('\n')}
@@ -247,7 +247,11 @@ ${messages.map(m => `<li style="${m.severity === 0 ? 'color: red;' : m.severity 
 
 function sendSlack(messages) {
   colors.disable();
-  webhook.send(messages.map(m => colors.strip(m.message)).join('\n'))
+  const joined = messages.map(m => colors.strip(m.message)).join('\n');
+  const message = `*${vaultName}*
+
+${joined}`;
+  webhook.send(message)
     .then(() => console.log('Posted messages to slack'));
 }
 
