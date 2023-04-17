@@ -217,6 +217,8 @@ const client = new SecretClient(url, credential);
     !process.env.AZURE_TENANT_ID ) {
       printError('It seems like you have not set the required authentication-related environment variables'.error);
       printError('See usage (--help) to figure out which are required');
+      printError('Stacktrace:');
+      printError(ex);
     } else {
       printError('The error stack was as follows:'.error)
       printError(ex);
