@@ -17,5 +17,5 @@ inputs:
     description: 'Only test secrets that have an explicit expiration set - otherwise assume created + 1 year.'
     required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
